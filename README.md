@@ -38,7 +38,7 @@
 
 "dbname": "豆奶酱",**#### 你的Mysql库名**
 
-"web": "http://www.baidu.com/"**#### 你的域名或者IP（最后要带/）**
+"web": "http://www.baidu.com/" **####你的域名或者IP（最后要带/**
 
 }
 
