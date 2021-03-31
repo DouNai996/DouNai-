@@ -15,7 +15,9 @@
 ## 部署
 
  1. 下载源代码，上传至~~服务器~~
- 2. 修改Config.ini
+ 2. 修改Config.
+ 
+ 
 {
     "appID": "@@@@@@@@@@@@@@@@",   **[微信公众平台](https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index)#### 测试号信息**
     
