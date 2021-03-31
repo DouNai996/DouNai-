@@ -15,10 +15,10 @@
 ## 部署
 
  1. 下载源代码，上传至~~服务器~~
- 2. 修改Config.
+ 2. 修改Config
  
  
-{
+   {
     "appID": "@@@@@@@@@@@@@@@@",   **[微信公众平台](https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index)#### 测试号信息**
     
     "appsecret": "@@@@@@@@@@@@@@",**[微信公众平台](https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index)#### 测试号信息**
@@ -38,13 +38,12 @@
     "dbname": "豆奶酱",**#### 你的Mysql库名**
     
     "web": "http://www.baidu.com/"**#### 你的域名或者IP（最后要带/）**
-    
-}
+    }
 
     3.**Mysql数据库操作**
-    ```
+   
     登入phpmyadmin后导入 data.sql 文件
-    ```
+
 	
 
 ## API接口
