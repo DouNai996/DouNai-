@@ -25,6 +25,7 @@ if(is_array($_GET)&&count($_GET)>0)//判断是否有Get参数
 			while($row = $result->fetch_assoc()) {
 				$title=$row["title"];
 				$content=$row["content"];
+				$time = $row["time"];
 			}
 		} else {
 			$title="404";
@@ -34,6 +35,7 @@ if(is_array($_GET)&&count($_GET)>0)//判断是否有Get参数
 		$txt=file_get_contents('mb.html');
 		$txt=str_replace('@@@@@',$title,$txt);
 		$txt=str_replace('#####',$content,$txt);
+		$txt=str_replace('$$$$$',$time,$txt);
 		//可以类似的语句替换许多变量
 		echo $txt;
 	}

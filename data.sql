@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2021-03-31 18:52:50
+-- 生成日期： 2021-04-02 19:32:58
 -- 服务器版本： 5.6.50-log
 -- PHP 版本： 7.4.16
 
@@ -32,7 +32,8 @@ CREATE TABLE `data` (
   `id` int(11) NOT NULL,
   `url` text NOT NULL,
   `title` text NOT NULL,
-  `content` text NOT NULL
+  `content` text NOT NULL,
+  `time` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -55,7 +56,7 @@ ALTER TABLE `data` ADD FULLTEXT KEY `url` (`url`);
 -- 使用表AUTO_INCREMENT `data`
 --
 ALTER TABLE `data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

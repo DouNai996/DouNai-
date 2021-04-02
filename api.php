@@ -54,16 +54,16 @@ function gx_access_token()//更新access_token
 	//写入
 	return $arr["access_token"];
 }
-function fs_message($title,$content,$url)//发送信息 
+function fs_message($title,$content,$url,$now_date)//发送信息 
 {
-	$html=file_get_contents('https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.hq_access_token(), false, stream_context_create(array('http' => array('method'=>'post','header'=>"Content-Type: application/json;charset=utf-8",'content'=>'{"touser":"'.hq_userid().'","template_id":"'.hq_template_id().'","url":"'.$url.'","topcolor": "#FF0000","data":{"title":{"value":"'.$title.'","color":"#000851"},"content":{"value":"'.$content.'","color":"#1CB5E0"}}}'))));
+	$html=file_get_contents('https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.hq_access_token(), false, stream_context_create(array('http' => array('method'=>'post','header'=>"Content-Type: application/json;charset=utf-8",'content'=>'{"touser":"'.hq_userid().'","template_id":"'.hq_template_id().'","url":"'.$url.'","topcolor": "#FF0000","data":{"title":{"value":"'.$title."  ".$now_date.'","color":"#000851"},"content":{"value":"'.$content.'","color":"#1CB5E0"}}}'))));
 	$arr = json_decode($html, true);
 	//echo $html;
 	//echo $arr["errcode"];
 	if ($arr["errcode"]>0) {
 		//access_token超时
 		gx_access_token();
-		$html=file_get_contents('https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.hq_access_token(), false, stream_context_create(array('http' => array('method'=>'post','header'=>"Content-Type: application/json;charset=utf-8",'content'=>'{"touser":"'.hq_userid().'","template_id":"'.hq_template_id().'","url":"'.$url.'","topcolor": "#FF0000","data":{"title":{"value":"'.$title.'","color":"#000851"},"content":{"value":"'.$content.'","color":"#1CB5E0"}}}'))));
+		$html=file_get_contents('https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.hq_access_token(), false, stream_context_create(array('http' => array('method'=>'post','header'=>"Content-Type: application/json;charset=utf-8",'content'=>'{"touser":"'.hq_userid().'","template_id":"'.hq_template_id().'","url":"'.$url.'","topcolor": "#FF0000","data":{"title":{"value":"'.$title."  ".$now_date.'","color":"#000851"},"content":{"value":"'.$content.'","color":"#1CB5E0"}}}'))));
 		$arr = json_decode($html, true);
 		//echo $arr["errcode"];
 		//echo "gx".$html;
@@ -71,7 +71,7 @@ function fs_message($title,$content,$url)//发送信息
 	}
 	return $html;
 }
-function tj_sql($title,$content) {
+function tj_sql($title,$content,$now_date) {
 	//生成随机文件名
 	$hash=date("Y").date("m").date("d")."-";
 	if(is_array($_GET)&&count($_GET)>0)//判断是否有Get参数 
@@ -114,7 +114,8 @@ function tj_sql($title,$content) {
 	if ($conn->connect_error) {
 		die("连接失败: " . $conn->connect_error);
 	}
-	$sql = "INSERT INTO `data` (`id`, `url`, `title`, `content`) VALUES (NULL, "."'".$hash."', '".$title."', '".$content."');";
+	
+	$sql = "INSERT INTO `data` (`id`, `url`, `title`, `content`, `time`) VALUES (NULL, "."'".$hash."', '".$title."', '".$content."', '".$now_date."');";
 	if ($conn->query($sql) === TRUE) {
 		//echo "新记录插入成功";
 	} else {
@@ -132,8 +133,10 @@ if(is_array($_GET)&&count($_GET)>0)//判断是否有Get参数
 	{
 		$title=$_GET["title"];
 		$content=$_GET["content"];
+		$now_time= time();
+        $now_date= date('Y年m月d日 H:i:s',$now_time);
 		//echo $title.$content;
-		fs_message($title,$content,tj_sql($title,$content));
+		fs_message($title,$content,tj_sql($title,$content,$now_date),$now_date);
 	}
 }
 ?>
