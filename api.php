@@ -127,12 +127,12 @@ function tj_sql($title,$content,$now_date) {
 	
 	return $web.'index.php?key='.$hash;
 }
-if(is_array($_GET)&&count($_GET)>0)//判断是否有Get参数 
+if(is_array($_REQUEST)&&count($_REQUEST)>0)//判断是否有Get参数 
 {
-	if(isset($_GET["content"]))//判断所需要的参数是否存在，isset用来检测变量是否设置，返回true or false 
+	if(isset($_REQUEST["content"]))//判断所需要的参数是否存在，isset用来检测变量是否设置，返回true or false 
 	{
-		$title=$_GET["title"];
-		$content=$_GET["content"];
+		$title=$_REQUEST["title"];
+		$content=$_REQUEST["content"];
 		$now_time= time();
         $now_date= date('Y年m月d日 H:i:s',$now_time);
 		//echo $title.$content;
